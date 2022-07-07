@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+import Header from './components/Header';
+import { RegistrationForm } from './pages/RegistrationForm';
 
 function App() {
   return (
     <div className="App">
-     <h2>Hello World</h2>
+      <Header />
+     <RegistrationForm />
     </div>
   );
 }
