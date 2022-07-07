@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+header {
+  background-color: #000d36;
+  padding: 20px 0;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 100px);
+  align-items: center;
+}
+
+.main-inner {
+  width: 600px;
+  border: 1px solid #000d36;
+  padding: 1rem;
+}
+
+.ctrl-btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+button + button {
+  margin-left: 10px;
+}
