@@ -18,7 +18,7 @@ export const PersonalInformation: FC<FormPropType> = (props) => {
               name: firstName.name,
               label: firstName.label,
               fullWidth: true,
-              placeholder: "Example: James"
+              placeholder: "Example: James",
             }}
           />
           <InputField
@@ -26,7 +26,7 @@ export const PersonalInformation: FC<FormPropType> = (props) => {
               name: lastName.name,
               label: lastName.label,
               fullWidth: true,
-              placeholder: "Example: Morris"
+              placeholder: "Example: Morris",
             }}
           />
           <InputField
@@ -34,7 +34,7 @@ export const PersonalInformation: FC<FormPropType> = (props) => {
               name: telephone.name,
               label: telephone.label,
               fullWidth: true,
-              placeholder: "Example: +4917212345678"
+              placeholder: "Example: +4917212345678",
             }}
           />
         </Grid>

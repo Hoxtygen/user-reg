@@ -25,7 +25,7 @@ export const InputField: FC<PropsType> = (props) => {
       helperText={displayHelperText()}
       {...field}
       {...restProps.defaultProps}
-      margin = "normal"
+      margin="normal"
     />
   );
 };

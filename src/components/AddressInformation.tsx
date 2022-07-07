@@ -17,8 +17,7 @@ export const AddressInformation: FC<FormPropType> = (props) => {
               name: street.name,
               label: street.label,
               fullWidth: true,
-              placeholder: "Example: JahnPlatz street"
-
+              placeholder: "Example: JahnPlatz street",
             }}
           />
 
@@ -27,7 +26,7 @@ export const AddressInformation: FC<FormPropType> = (props) => {
               name: houseNumber.name,
               label: houseNumber.label,
               fullWidth: true,
-              placeholder: "Example: 45 or 45B"
+              placeholder: "Example: 45 or 45B",
             }}
           />
           <InputField
@@ -35,7 +34,7 @@ export const AddressInformation: FC<FormPropType> = (props) => {
               name: zipCode.name,
               label: zipCode.label,
               fullWidth: true,
-              placeholder: "Example: 23456"
+              placeholder: "Example: 23456",
             }}
           />
           <InputField
@@ -43,7 +42,7 @@ export const AddressInformation: FC<FormPropType> = (props) => {
               name: city.name,
               label: city.label,
               fullWidth: true,
-              placeholder: "Example: Berlin"
+              placeholder: "Example: Berlin",
             }}
           />
         </Grid>

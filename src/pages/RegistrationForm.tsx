@@ -3,7 +3,7 @@ import {
   CircularProgress,
   Step,
   StepLabel,
-  Stepper
+  Stepper,
 } from "@mui/material";
 import { Form, Formik, FormikHelpers, FormikValues } from "formik";
 import { useState } from "react";
@@ -61,53 +61,53 @@ export const RegistrationForm = () => {
   return (
     <main className="main">
       <div className="main-inner">
-      {activeStep === steps.length ? (
-        <SuccessPage />
-      ) : (
-        <>
-        <Stepper activeStep={activeStep}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={activeValidationSchema}
-          onSubmit={handleSubmit}
-        >
-          {(formikProps) => (
-            <Form>
-              {renderForm(activeStep)}
-              <div className="ctrl-btn-wrapper">
-                {activeStep > 0 && (
-                  <Button
-                    onClick={() => setActiveStep((prev) => prev - 1)}
-                    variant = "contained"
-                    color="primary"
-                  >
-                    Back
-                  </Button>
-                )}
+        {activeStep === steps.length ? (
+          <SuccessPage />
+        ) : (
+          <>
+            <Stepper activeStep={activeStep}>
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={activeValidationSchema}
+              onSubmit={handleSubmit}
+            >
+              {(formikProps) => (
+                <Form>
+                  {renderForm(activeStep)}
+                  <div className="ctrl-btn-wrapper">
+                    {activeStep > 0 && (
+                      <Button
+                        onClick={() => setActiveStep((prev) => prev - 1)}
+                        variant="contained"
+                        color="primary"
+                      >
+                        Back
+                      </Button>
+                    )}
 
-                <div>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    disabled={formikProps.isSubmitting}
-                  >
-                    {isLastStep ? "Submit" : "Next"}
-                  </Button>
-                  {formikProps.isSubmitting && <CircularProgress />}
-                </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
-        </>
-      )}
+                    <div>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={formikProps.isSubmitting}
+                      >
+                        {isLastStep ? "Submit" : "Next"}
+                      </Button>
+                      {formikProps.isSubmitting && <CircularProgress />}
+                    </div>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </>
+        )}
       </div>
     </main>
   );
