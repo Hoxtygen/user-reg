@@ -9,8 +9,8 @@ const {
     houseNumber,
     city,
     zipCode,
-    accountOwner,
-    IBAN,
+    owner,
+    iban,
   },
 } = formModel;
 
@@ -22,6 +22,6 @@ export const initialValues = {
   [houseNumber.name]: "",
   [city.name]: "",
   [zipCode.name]: "",
-  [accountOwner.name]: "",
-  [IBAN.name]: "",
+  [owner.name]: "",
+  [iban.name]: "",
 };
