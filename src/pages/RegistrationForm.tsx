@@ -1,49 +1,39 @@
 import {
-  Button,
   CircularProgress,
   Step,
   StepLabel,
   Stepper,
 } from "@mui/material";
 import { Form, Formik, FormikHelpers, FormikValues } from "formik";
-import { useState } from "react";
-import { AddressInformation } from "../components/AddressInformation";
-import PaymentInformation from "../components/PaymentInformation";
-import { PersonalInformation } from "../components/PersonalInformation";
+import { useEffect, useState } from "react";
 import SuccessPage from "../components/SuccessPage";
-import { formModel } from "../utils/formModels";
+import { BASE_URL, sleep, STEPS } from "../utils/helpers";
 import { initialValues } from "../utils/initialValues";
+import { renderForm } from "../utils/renderForm";
+import useRequest from "../utils/useRequest";
 import { validationSchema } from "../utils/validationSchema";
 
 export const RegistrationForm = () => {
-  const steps = ["Personal Information", "Address", "Payment Information"];
-
-  const { formFields } = formModel;
-  const renderForm = (step: number) => {
-    switch (step) {
-      case 0:
-        return <PersonalInformation formFields={formFields} />;
-      case 1:
-        return <AddressInformation formFields={formFields} />;
-      case 2:
-        return <PaymentInformation formFields={formFields} />;
-    }
-  };
-  const [activeStep, setActiveStep] = useState(0);
+  const myStep = localStorage.getItem("activeStep");
+  const [loadSaved, setLoadSaved] = useState<FormikValues>(null);
+  const [activeStep, setActiveStep] = useState(Number(myStep) || 0);
   const activeValidationSchema = validationSchema[activeStep];
-  const isLastStep = activeStep === steps.length - 1;
+  const isLastStep = activeStep === STEPS.length - 1;
+  const { loading, error, data, makeRequest } = useRequest();
 
-  const sleep = (time: number) => {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  };
+  useEffect(() => {
+    const savedFormData = localStorage.getItem("savedFormData");
+    setLoadSaved(JSON.parse(savedFormData));
+  }, []);
+
   const submitForm = async (
     values: FormikValues,
     actions: FormikHelpers<FormikValues>
   ) => {
     await sleep(1000);
-    alert(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
-    setActiveStep((prev) => prev + 1);
+    values.customerId = 1;
+    makeRequest(BASE_URL, values);
   };
 
   const handleSubmit = (
@@ -51,55 +41,59 @@ export const RegistrationForm = () => {
     actions: FormikHelpers<FormikValues>
   ) => {
     if (isLastStep) {
+      localStorage.setItem("savedFormData", JSON.stringify(values));
+      localStorage.setItem("activeStep", JSON.stringify(activeStep));
       submitForm(values, actions);
     } else {
       setActiveStep((prev) => prev + 1);
       actions.setTouched({});
       actions.setSubmitting(false);
+      localStorage.setItem("savedFormData", JSON.stringify(values));
+      localStorage.setItem("activeStep", JSON.stringify(activeStep));
     }
   };
   return (
     <main className="main">
       <div className="main-inner">
-        {activeStep === steps.length ? (
+        {error && <p className="error">{error}</p>}
+        {activeStep === STEPS.length ? (
           <SuccessPage />
         ) : (
           <>
             <Stepper activeStep={activeStep}>
-              {steps.map((label) => (
-                <Step key={label}>
+              {STEPS.map((label) => (
+                <Step  key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>
               ))}
             </Stepper>
             <Formik
-              initialValues={initialValues}
+              initialValues={loadSaved || initialValues}
               validationSchema={activeValidationSchema}
               onSubmit={handleSubmit}
+              enableReinitialize
             >
               {(formikProps) => (
                 <Form>
                   {renderForm(activeStep)}
                   <div className="ctrl-btn-wrapper">
                     {activeStep > 0 && (
-                      <Button
+                      <button
                         onClick={() => setActiveStep((prev) => prev - 1)}
-                        variant="contained"
-                        color="primary"
+                        className = "btn"
                       >
                         Back
-                      </Button>
+                      </button>
                     )}
 
                     <div>
-                      <Button
+                      <button
                         type="submit"
-                        variant="contained"
-                        color="primary"
                         disabled={formikProps.isSubmitting}
+                        className = "btn"
                       >
                         {isLastStep ? "Submit" : "Next"}
-                      </Button>
+                      </button>
                       {formikProps.isSubmitting && <CircularProgress />}
                     </div>
                   </div>

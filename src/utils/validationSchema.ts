@@ -10,8 +10,8 @@ const {
     houseNumber,
     city,
     zipCode,
-    accountOwner,
-    IBAN,
+    owner,
+    iban,
   },
 } = formModel;
 
@@ -49,18 +49,18 @@ export const validationSchema = [
       )
       .required(`${city.errorMsg}`),
     [zipCode.name]: string()
-      .matches(/^\d{5}$/)
+      .matches(/^\d{5}$/, "zip code must be 5 digits long")
       .required(`${zipCode.errorMsg}`),
   }),
   object().shape({
-    [accountOwner.name]: string()
+    [owner.name]: string()
       .min(2, "Name must be at least 2 characters long")
       .required(`${firstName.errorMsg}`),
-    [IBAN.name]: string()
+    [iban.name]: string()
       .matches(
         /^DE(?:\s*[0-9a-zA-Z]\s*){20}$/,
         "Enter a valid German IBAN account number"
       )
-      .required(`${IBAN.errorMsg}`),
+      .required(`${iban.errorMsg}`),
   }),
 ];

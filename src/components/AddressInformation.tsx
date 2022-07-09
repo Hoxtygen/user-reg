@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { FC } from "react";
 import { FormPropType } from "../types";
 import { InputField } from "./InputField";
@@ -9,7 +9,6 @@ export const AddressInformation: FC<FormPropType> = (props) => {
   } = props;
   return (
     <div>
-      <Typography>Address Information</Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12}>
           <InputField

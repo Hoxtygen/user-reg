@@ -37,13 +37,13 @@ export const formModel = {
       label: "Zip code",
       errorMsg: "Zip code is required",
     },
-    accountOwner: {
-      name: "accountOwner",
+    owner: {
+      name: "owner",
       label: "Account owner",
       errorMsg: "Account owner name is required",
     },
-    IBAN: {
-      name: "IBAN",
+    iban: {
+      name: "iban",
       label: "IBAN",
       errorMsg: "IBAN is required",
     },
