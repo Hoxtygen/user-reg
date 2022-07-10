@@ -11,6 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 	* types
 	* utils
 
+![image](https://user-images.githubusercontent.com/19408669/178151220-848077d3-0ad1-49f2-9456-d8504440f63f.png)
 
 
 ### Used technologies
