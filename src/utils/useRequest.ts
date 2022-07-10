@@ -1,25 +1,23 @@
 import axios from "axios";
+import { FormikValues } from "formik";
 import { useState } from "react";
 
 export default function useRequest() {
   const [error, setError] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
-  const makeRequest = async (url, formData) => {
+  const makeRequest = async (url: string, formData: FormikValues) => {
     setLoading(true);
     try {
       const response = await axios({
         method: "post",
         url: url,
         data: formData,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
       });
-      setData(response.data);
+      setData(response.data.paymentDataId);
       setError(null);
       setLoading(false);
-    } catch (err) {
+    } catch (err: any) {
       setLoading(false);
       setError(err.message);
     }

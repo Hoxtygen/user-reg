@@ -11,6 +11,8 @@ h4,
 h5,
 h6 {
   margin: 0;
+  font-family: Oswald, sans-serif;
+  color: #fff;
 }
 header {
   background-color: $primaryColor;
@@ -25,22 +27,44 @@ header {
 }
 
 .main-inner {
-  width: 600px;
-  border: 1px solid  $primaryColor;
-  padding: 1rem;
+  width: 800px;
+}
+.success-page {
+  border: 1px solid $primaryColor;
+  color: $primaryColor;
+  padding: 2rem;
+
+  .success-text {
+    margin: 1.2rem 0;
+    color: $primaryColor;
+  }
+
+  .success-payment-id {
+    color: $primaryColor;
+    .span {
+      color: green;
+      display: block;
+      letter-spacing: 1px;
+    }
+  }
 }
 
+.form-wrapper {
+  width: 600px;
+  border: 1px solid $primaryColor;
+  padding: 1rem;
+}
 .ctrl-btn-wrapper {
   display: flex;
   justify-content: center;
-  padding: .54rem;
+  padding: 0.54rem;
   align-items: center;
 }
 
-.btn   {
+.btn {
   margin-left: 10px;
-  padding: .5rem 1rem;
-  background-color:  $primaryColor;
+  padding: 0.5rem 1rem;
+  background-color: $primaryColor;
   color: #fff;
   text-transform: uppercase;
   border-radius: 5px;
@@ -57,6 +81,7 @@ header {
 .error {
   background-color: rgb(192, 149, 149);
   color: red;
+  padding: 0.5rem;
 }
 
 button + button {
